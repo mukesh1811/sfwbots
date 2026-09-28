@@ -6,7 +6,11 @@ from flask import Flask
 def create_app(test_config=None):
     app = Flask(__name__)
     app.config.from_mapping(
-        WEB3FORMS_ACCESS_KEY=os.environ.get("WEB3FORMS_ACCESS_KEY", "").strip(),
+        # Public submission key, intentionally included in the rendered HTML.
+        # Override per environment; an explicitly empty value disables signups.
+        WEB3FORMS_ACCESS_KEY=os.environ.get(
+            "WEB3FORMS_ACCESS_KEY", "a6be62e6-a5a1-462e-9745-5ecff198f102"
+        ).strip(),
         PUBLIC_BASE_URL=os.environ.get("PUBLIC_BASE_URL", "https://sfwbots.com").rstrip("/"),
     )
     if test_config:

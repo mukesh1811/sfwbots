@@ -20,21 +20,25 @@ python -m venv .venv
 . .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
-# Edit .env with your Web3Forms access key.
+# Optional: override the public form key for a different form.
 set -a
 . ./.env
 set +a
 flask --app app run --debug
 ```
 
-Open http://127.0.0.1:5000. The form stays disabled without a key. Flask does not
-automatically load `.env`; the shell commands above export it.
+Open http://127.0.0.1:5000. The SFWbots waitlist key is configured by default.
+Flask does not automatically load `.env`; the shell commands above export it.
 
-## Enable the waitlist
+## Waitlist configuration
 
-1. Create a key at https://web3forms.com/ for the inbox receiving signups.
-2. Set `WEB3FORMS_ACCESS_KEY` in the environment and restart the app.
-3. Submit a real signup you authorize and verify delivery before sharing the page.
+The **SFWbots waitlist** form is configured in Web3Forms for **sfwbots.com**.
+Its public submission key is included in the application defaults and `.env.example`.
+Account credentials are not included. Manage the destination inbox in Web3Forms.
+
+Override `WEB3FORMS_ACCESS_KEY` to use another form. Set it to an empty string to
+disable signups. Submit a real signup you authorize and verify inbox delivery
+before sharing the page; automated tests do not send email.
 
 The browser posts directly to Web3Forms. Its form access key is public by design;
 it is not an LLM or cloud credential. Configure spam protection/domain restrictions
@@ -69,7 +73,7 @@ gcloud run deploy sfwbots \
   --region YOUR_GCP_REGION \
   --allow-unauthenticated \
   --port 8080 \
-  --set-env-vars PUBLIC_BASE_URL=https://sfwbots.com,WEB3FORMS_ACCESS_KEY=YOUR_FORM_KEY
+  --set-env-vars PUBLIC_BASE_URL=https://sfwbots.com
 ```
 
 Enable the required Cloud Run, Cloud Build, and Artifact Registry APIs if prompted.
