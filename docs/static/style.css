@@ -11,8 +11,7 @@ button:disabled{cursor:not-allowed}
 .skip-link{position:absolute;top:-60px;left:12px;padding:12px;background:white;z-index:10}
 .skip-link:focus{top:10px}
 .wordmark{display:inline-flex;align-items:baseline;text-decoration:none;font-size:33px;font-weight:790;letter-spacing:-1.75px;line-height:1;margin-bottom:58px}
-.wordmark span{background:var(--cyan);border-radius:3px;padding:3px 5px 5px;margin-left:2px}
-.wordmark i{width:5px;height:5px;border-radius:50%;background:var(--ink);margin-left:3px}
+.wordmark span{background:var(--cyan);border-radius:3px;padding:3px 4px 5px;margin-right:1px}
 main{max-width:1376px;padding:0 52px;margin:auto}
 .hero{min-height:713px;padding:76px 0 73px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(50px,7vw,128px);align-items:center}
 .hero-copy{padding-bottom:10px}
