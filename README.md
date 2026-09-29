@@ -74,7 +74,7 @@ gcloud run deploy sfwbots \
   --region YOUR_GCP_REGION \
   --allow-unauthenticated \
   --port 8080 \
-  --set-env-vars PUBLIC_BASE_URL=https://sfwbots.com,AUTH_LANDING_URL=https://mukesh1811.github.io/sfwbots/,FIRESTORE_PROJECT_ID=prj-id-misc
+  --set-env-vars PUBLIC_BASE_URL=https://sfwbots.com,AUTH_LANDING_URL=https://sfwbots.com/,FIRESTORE_PROJECT_ID=prj-id-misc
 ```
 
 Enable the required Cloud Run, Cloud Build, Artifact Registry, and Firestore APIs
