@@ -7,7 +7,6 @@ landing = Blueprint("landing", __name__)
 def index():
     return render_template(
         "index.html",
-        access_key=current_app.config["WEB3FORMS_ACCESS_KEY"],
         base_url=current_app.config["PUBLIC_BASE_URL"],
     )
 

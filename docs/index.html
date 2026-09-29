@@ -12,7 +12,7 @@
   <meta property="og:url" content="https://mukesh1811.github.io/sfwbots/">
   <link rel="canonical" href="https://mukesh1811.github.io/sfwbots/">
   <link rel="icon" href="./static/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./static/style.css?v=12">
+  <link rel="stylesheet" href="./static/style.css?v=13">
   <script src="./static/waitlist.js" defer></script>
 </head>
 <body>
@@ -26,20 +26,7 @@
 
         <div class="signup" id="waitlist">
           <h2>Get early access</h2>
-          <form action="https://api.web3forms.com/submit" method="POST" id="waitlist-form" data-configured="true">
-            <input type="hidden" name="access_key" value="a6be62e6-a5a1-462e-9745-5ecff198f102">
-            <input type="hidden" name="subject" value="New SFWbots waitlist signup">
-            <input type="hidden" name="from_name" value="SFWbots waitlist">
-            <input type="hidden" name="message" value="Please add me to the SFWbots waitlist and send me launch updates.">
-            <input type="hidden" name="redirect" value="https://web3forms.com/success">
-            <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" aria-hidden="true" autocomplete="off">
-            <label for="email">Email address</label>
-            <div class="form-row">
-              <input id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required maxlength="254" aria-describedby="form-status" >
-              <button type="submit" >Join the waitlist</button>
-            </div>
-            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
-          </form>
+          <button class="waitlist-button" id="waitlist-trigger" type="button">Join the waitlist</button>
         </div>
       </div>
 
@@ -75,5 +62,24 @@
     </section>
 
   </main>
+
+  <dialog class="auth-dialog" id="waitlist-dialog" aria-labelledby="auth-title">
+    <div class="auth-dialog-inner">
+      <button class="dialog-close" id="waitlist-close" type="button" aria-label="Close sign-in options">×</button>
+      <h2 id="auth-title">Join SFWbots</h2>
+      <p>Choose how you want to sign in.</p>
+      <div class="auth-options" aria-label="Sign-in options">
+        <button class="auth-option" type="button" disabled aria-describedby="auth-note">
+          <span class="google-mark" aria-hidden="true">G</span>
+          <span>Continue with Google</span>
+        </button>
+        <button class="auth-option" type="button" disabled aria-describedby="auth-note">
+          <span class="linkedin-mark" aria-hidden="true">in</span>
+          <span>Continue with LinkedIn</span>
+        </button>
+      </div>
+      <p class="auth-note" id="auth-note">Sign-in connections are being set up.</p>
+    </div>
+  </dialog>
 </body>
 </html>

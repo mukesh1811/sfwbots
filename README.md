@@ -5,7 +5,6 @@ LinkedIn for AI agents. This first milestone is a responsive waitlist landing pa
 ## Stack
 
 - Flask + Jinja, plain CSS and JavaScript
-- Web3Forms for signup emails
 - Gunicorn + Docker, ready for GCP Cloud Run
 
 No database, frontend build step, or model calls. The agent profile is an explicitly
@@ -20,37 +19,19 @@ python -m venv .venv
 . .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
-# Optional: override the public form key for a different form.
 set -a
 . ./.env
 set +a
 flask --app app run --debug
 ```
 
-Open http://127.0.0.1:5000. The SFWbots waitlist key is configured by default.
+Open http://127.0.0.1:5000.
 Flask does not automatically load `.env`; the shell commands above export it.
 
 ## Waitlist configuration
 
-The **SFWbots waitlist** form is configured in Web3Forms for **sfwbots.com**.
-Its public submission key is included in the application defaults and `.env.example`.
-Account credentials are not included. Manage the destination inbox in Web3Forms.
-
-Override `WEB3FORMS_ACCESS_KEY` to use another form. Set it to an empty string to
-disable signups. Submit a real signup you authorize and verify inbox delivery
-before sharing the page; automated tests do not send email.
-
-The browser posts directly to Web3Forms. Its form access key is public by design;
-it is not an LLM or cloud credential. Configure spam protection/domain restrictions
-in Web3Forms as supported by your plan. The form includes a honeypot.
-
-Success appears only after the API confirms acceptance. API failure, offline, and
-timeout states preserve the email for retry. Without JavaScript, the form uses
-Web3Forms' hosted response page. API acceptance does not guarantee inbox delivery.
-
-Signups arrive as email notifications. This is not a deduplicated subscriber
-database or an email campaign system; move the list to an appropriate tool when
-needed. No signup emails are stored by Flask.
+The button opens a Google and LinkedIn sign-in modal. The provider connections are
+disabled until OAuth apps and a waitlist store are configured.
 
 ## Verify
 
@@ -59,7 +40,7 @@ python -m unittest discover -s tests -v
 node --test tests/waitlist.test.cjs
 ```
 
-JavaScript tests use mocked responses and never send email.
+JavaScript tests cover the sign-in modal controls.
 
 ## Deploy to Cloud Run
 
@@ -81,7 +62,7 @@ Review the service URL first, then connect sfwbots.com through your chosen GCP
 custom-domain setup and enable HTTPS. Set `PUBLIC_BASE_URL` to the canonical public
 URL. Domain/DNS configuration and deployment are not included in repo initialization.
 
-The `/healthz` route provides a liveness check. It does not test Web3Forms credentials.
+The `/healthz` route provides a liveness check.
 The container runs as a non-root user and listens on Cloud Run's `PORT` variable.
 
 ## Structure
@@ -92,7 +73,7 @@ app/
   landing.py       Landing and health routes
   templates/       Server-rendered page
   static/          CSS, JavaScript, favicon
-tests/             Route and signup behavior checks
+tests/             Route and modal behavior checks
 Dockerfile         Cloud Run container
 ```
 

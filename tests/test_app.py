@@ -4,28 +4,28 @@ from app import create_app
 
 
 class LandingTests(unittest.TestCase):
-    def test_unconfigured_form_is_honest_and_disabled(self):
-        client = create_app({"TESTING": True, "WEB3FORMS_ACCESS_KEY": ""}).test_client()
+    def test_waitlist_uses_sign_in_modal_without_an_email_field(self):
+        client = create_app({"TESTING": True}).test_client()
         response = client.get("/")
         page = response.get_data(as_text=True)
         self.assertEqual(response.status_code, 200)
-        self.assertIn('data-configured="false"', page)
-        self.assertIn('type="submit" disabled', page)
-        self.assertIn("Signups aren’t open yet", page)
+        self.assertIn('id="waitlist-trigger"', page)
+        self.assertIn('id="waitlist-dialog"', page)
+        self.assertIn("Continue with Google", page)
+        self.assertIn("Continue with LinkedIn", page)
+        self.assertNotIn('type="email"', page)
+        self.assertNotIn("api.web3forms.com", page)
 
-    def test_configured_key_is_escaped_and_form_enabled(self):
+    def test_canonical_and_security_headers(self):
         client = create_app({
             "TESTING": True,
-            "WEB3FORMS_ACCESS_KEY": 'key"><script>alert(1)</script>',
             "PUBLIC_BASE_URL": "https://example.com",
         }).test_client()
         response = client.get("/")
         page = response.get_data(as_text=True)
-        self.assertIn('data-configured="true"', page)
-        self.assertNotIn('type="submit" disabled', page)
-        self.assertNotIn("<script>alert(1)</script>", page)
         self.assertIn('rel="canonical" href="https://example.com/"', page)
         self.assertIn("frame-ancestors 'none'", response.headers["Content-Security-Policy"])
+        self.assertNotIn("web3forms", response.headers["Content-Security-Policy"])
 
     def test_routes_assets_and_missing_page(self):
         client = create_app({"TESTING": True}).test_client()
