@@ -56,12 +56,8 @@ input::placeholder{color:#7a898e}
 .featured-section{margin-top:20px}
 .work-card{display:flex;align-items:center;gap:15px;background:#f6f9fa;border:1px solid #e0e8eb;border-radius:6px;padding:11px}
 .work-monogram{display:grid;place-items:center;flex:none;width:66px;height:52px;background:#cceff7;color:#185364;border-radius:3px;font-size:15px;font-weight:760;letter-spacing:-.06em}
-.path{border-top:1px solid #d5e0e4;padding:25px 0 33px}
-.path ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-.path li{display:flex;align-items:center;gap:11px;font-size:14px;font-weight:650;white-space:nowrap}
-.path li span{font-size:12px;color:#1b9bb7;font-weight:720}
-@media(max-width:1100px){.hero{gap:42px}.hero h1{font-size:clamp(49px,5vw,65px)}.intro{font-size:16px}.path li{font-size:12px}}
-@media(max-width:800px){main{padding-left:28px;padding-right:28px}.hero{min-height:auto;grid-template-columns:1fr;gap:54px;padding:64px 0 62px}.hero-copy{padding:0}.hero h1{font-size:clamp(56px,9vw,80px)}.intro{font-size:18px}.showcase{max-width:630px;width:100%;margin:auto}.path ol{grid-template-columns:repeat(3,1fr);row-gap:18px}}
-@media(max-width:520px){main{padding-left:20px;padding-right:20px}.wordmark{font-size:27px;margin-bottom:46px}.hero{padding:47px 0 43px;gap:42px}h1,.hero h1{font-size:clamp(42px,10.8vw,57px);letter-spacing:-.065em;margin-bottom:22px}.intro{font-size:16px;line-height:1.6}.signup{margin-top:30px}.signup h2{font-size:18px}.form-row{flex-direction:column}.form-row button{width:100%}.profile-banner{height:96px;padding-right:24px}.banner-mark{font-size:65px}.profile-body{padding:0 20px 21px}.profile-head{height:40px;margin-bottom:13px}.avatar{height:76px;width:76px;margin-top:-37px;font-size:34px}.profile-badge{font-size:11px}.profile-body h2{font-size:28px}.profile-description{font-size:13px}.path{padding:22px 0 26px}.path ol{grid-template-columns:1fr 1fr;gap:16px 8px}.path li{font-size:12px}}
-@media(max-width:350px){h1,.hero h1{font-size:39px}.path ol{grid-template-columns:1fr}}
+@media(max-width:1100px){.hero{gap:42px}.hero h1{font-size:clamp(49px,5vw,65px)}.intro{font-size:16px}}
+@media(max-width:800px){main{padding-left:28px;padding-right:28px}.hero{min-height:auto;grid-template-columns:1fr;gap:54px;padding:64px 0 62px}.hero-copy{padding:0}.hero h1{font-size:clamp(56px,9vw,80px)}.intro{font-size:18px}.showcase{max-width:630px;width:100%;margin:auto}}
+@media(max-width:520px){main{padding-left:20px;padding-right:20px}.wordmark{font-size:27px;margin-bottom:46px}.hero{padding:47px 0 43px;gap:42px}h1,.hero h1{font-size:clamp(42px,10.8vw,57px);letter-spacing:-.065em;margin-bottom:22px}.intro{font-size:16px;line-height:1.6}.signup{margin-top:30px}.signup h2{font-size:18px}.form-row{flex-direction:column}.form-row button{width:100%}.profile-banner{height:96px;padding-right:24px}.banner-mark{font-size:65px}.profile-body{padding:0 20px 21px}.profile-head{height:40px;margin-bottom:13px}.avatar{height:76px;width:76px;margin-top:-37px;font-size:34px}.profile-badge{font-size:11px}.profile-body h2{font-size:28px}.profile-description{font-size:13px}}
+@media(max-width:350px){h1,.hero h1{font-size:39px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.form-row button{transition:none}}
