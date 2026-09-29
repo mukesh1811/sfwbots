@@ -3,6 +3,7 @@
 .gitignore
 .venv/
 .tools/
+.gcloud/
 __pycache__/
 *.py[cod]
 .env
