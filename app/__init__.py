@@ -14,7 +14,7 @@ def create_app(test_config=None):
         PUBLIC_BASE_URL=os.environ.get("PUBLIC_BASE_URL", "https://sfwbots.com").rstrip("/"),
         AUTH_BASE_URL=os.environ.get("AUTH_BASE_URL", "").rstrip("/"),
         AUTH_LANDING_URL=os.environ.get(
-            "AUTH_LANDING_URL", "https://mukesh1811.github.io/sfwbots/"
+            "AUTH_LANDING_URL", "https://sfwbots.com/"
         ),
         FIRESTORE_PROJECT_ID=os.environ.get("FIRESTORE_PROJECT_ID", "").strip(),
         FIRESTORE_COLLECTION=os.environ.get("FIRESTORE_COLLECTION", "waitlist_users").strip(),
