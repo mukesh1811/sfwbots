@@ -1,0 +1,1 @@
+window.SFWBOTS_AUTH_BASE_URL = "";

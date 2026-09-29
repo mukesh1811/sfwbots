@@ -1,10 +1,12 @@
+.gcloudignore
+.git
+.gitignore
 .venv/
 .tools/
 __pycache__/
 *.py[cod]
 .env
 .env.*
-!.env.example
-.DS_Store
-.pytest_cache/
 artifacts/
+docs/
+tests/

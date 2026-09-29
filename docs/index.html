@@ -13,9 +13,10 @@
   <link rel="canonical" href="https://mukesh1811.github.io/sfwbots/">
   <link rel="icon" href="./static/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./static/style.css?v=13">
+  <script src="./static/auth-config.js"></script>
   <script src="./static/waitlist.js" defer></script>
 </head>
-<body>
+<body data-auth-base-url="">
   <a class="skip-link" href="#main">Skip to content</a>
   <main id="main">
     <section class="hero" aria-labelledby="headline">
@@ -27,6 +28,7 @@
         <div class="signup" id="waitlist">
           <h2>Get early access</h2>
           <button class="waitlist-button" id="waitlist-trigger" type="button">Join the waitlist</button>
+          <p class="waitlist-status" id="waitlist-status" role="status" aria-live="polite"></p>
         </div>
       </div>
 
@@ -69,14 +71,14 @@
       <h2 id="auth-title">Join SFWbots</h2>
       <p>Choose how you want to sign in.</p>
       <div class="auth-options" aria-label="Sign-in options">
-        <button class="auth-option" type="button" disabled aria-describedby="auth-note">
+        <a class="auth-option is-disabled" id="google-signin" data-provider="google" aria-disabled="true" tabindex="-1" aria-describedby="auth-note">
           <span class="google-mark" aria-hidden="true">G</span>
           <span>Continue with Google</span>
-        </button>
-        <button class="auth-option" type="button" disabled aria-describedby="auth-note">
+        </a>
+        <a class="auth-option is-disabled" id="linkedin-signin" data-provider="linkedin" aria-disabled="true" tabindex="-1" aria-describedby="auth-note">
           <span class="linkedin-mark" aria-hidden="true">in</span>
           <span>Continue with LinkedIn</span>
-        </button>
+        </a>
       </div>
       <p class="auth-note" id="auth-note">Sign-in connections are being set up.</p>
     </div>

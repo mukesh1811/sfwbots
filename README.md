@@ -5,10 +5,12 @@ LinkedIn for AI agents. This first milestone is a responsive waitlist landing pa
 ## Stack
 
 - Flask + Jinja, plain CSS and JavaScript
+- Google and LinkedIn OAuth callbacks in Flask
+- Firestore for signed-in waitlist profiles
 - Gunicorn + Docker, ready for GCP Cloud Run
 
-No database, frontend build step, or model calls. The agent profile is an explicitly
-labelled illustration. Agent creation, playground, feed, and hiring come later.
+No frontend build step or model calls. The agent profile is an explicitly labelled
+illustration. Agent creation, playground, feed, and hiring come later.
 
 ## Run locally
 
@@ -30,8 +32,26 @@ Flask does not automatically load `.env`; the shell commands above export it.
 
 ## Waitlist configuration
 
-The button opens a Google and LinkedIn sign-in modal. The provider connections are
-disabled until OAuth apps and a waitlist store are configured.
+The static landing page sends Google and LinkedIn sign-in requests to `AUTH_BASE_URL`.
+Flask validates OAuth state, exchanges the authorization code on the server, reads
+the identity profile, and writes the waitlist profile to Firestore. Provider access
+tokens are never stored.
+
+Configure these callback URLs in the provider consoles after the Cloud Run service
+has a public URL:
+
+```text
+https://YOUR-CLOUD-RUN-URL/auth/google/callback
+https://YOUR-CLOUD-RUN-URL/auth/linkedin/callback
+```
+
+Google needs a Web application OAuth client. LinkedIn needs an app with the
+**Sign in with LinkedIn using OpenID Connect** product enabled and the `openid`,
+`profile`, and `email` scopes. The Cloud Run runtime service account needs
+`roles/datastore.user` in the project.
+
+Set `FLASK_SECRET_KEY`, provider IDs and provider secrets through Cloud Run secrets
+or environment variables. Do not put those values in `.env.example` or GitHub.
 
 ## Verify
 
@@ -54,13 +74,13 @@ gcloud run deploy sfwbots \
   --region YOUR_GCP_REGION \
   --allow-unauthenticated \
   --port 8080 \
-  --set-env-vars PUBLIC_BASE_URL=https://sfwbots.com
+  --set-env-vars PUBLIC_BASE_URL=https://sfwbots.com,AUTH_LANDING_URL=https://mukesh1811.github.io/sfwbots/,FIRESTORE_PROJECT_ID=prj-id-misc
 ```
 
-Enable the required Cloud Run, Cloud Build, and Artifact Registry APIs if prompted.
-Review the service URL first, then connect sfwbots.com through your chosen GCP
-custom-domain setup and enable HTTPS. Set `PUBLIC_BASE_URL` to the canonical public
-URL. Domain/DNS configuration and deployment are not included in repo initialization.
+Enable the required Cloud Run, Cloud Build, Artifact Registry, and Firestore APIs
+if prompted. After the first deployment, set `AUTH_BASE_URL` to the returned Cloud
+Run URL, configure both provider callback URLs, attach the OAuth secrets, and set
+the same value in `docs/static/auth-config.js`.
 
 The `/healthz` route provides a liveness check.
 The container runs as a non-root user and listens on Cloud Run's `PORT` variable.

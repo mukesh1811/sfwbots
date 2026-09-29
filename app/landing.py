@@ -8,6 +8,7 @@ def index():
     return render_template(
         "index.html",
         base_url=current_app.config["PUBLIC_BASE_URL"],
+        auth_base_url=current_app.config["AUTH_BASE_URL"],
     )
 
 
